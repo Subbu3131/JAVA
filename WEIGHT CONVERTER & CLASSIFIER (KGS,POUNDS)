@@ -1,0 +1,50 @@
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        double weight;
+        System.out.println("Enter Weight In Kilograms: ");
+        weight = input.nextDouble();
+        input.nextLine();
+
+        String preference;
+        System.out.println("Choose Your Preference(KGS/POUNDS): ");
+        preference = input.nextLine();
+
+        double newweight = weight*2.20462;
+
+
+        if(preference.equalsIgnoreCase("KGS")){
+            if(weight>=120){
+                System.out.println("Your Weight Is: "+weight);
+                System.out.println("OverWeight");
+            } else if (weight<=120 && weight>=70) {
+                System.out.println("Your Weight Is: "+weight);
+                System.out.println("Normal Weight");
+            } else if (weight<70 && weight>0) {
+                System.out.println("Your Weight Is: "+weight);
+                System.out.println("UnderWeight");
+            }else{
+                System.out.println("Enter Valid Weight!");
+            }
+        } else if (preference.equalsIgnoreCase("POUNDS")) {
+            if(newweight>=220){
+                System.out.println("Your  Weight(In Pounds) Is: "+newweight);
+                System.out.println("You are overweight");
+            } else if (newweight<=220 && newweight>=100) {
+                System.out.println("Your  Weight(In Pounds) Is: "+newweight);
+                System.out.println("You Are Normal");
+            } else if (newweight<=100 && newweight>=0) {
+                System.out.println("Your  Weight(In Pounds) Is: "+newweight);
+                System.out.println("You Are UnderWeight");
+            }else {
+                System.out.println("Enter Valid Weight!");
+            }
+        }else {
+            System.out.println("Invalid unit type");
+        }
+
+        input.close();
+    }
+}
