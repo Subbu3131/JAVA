@@ -1,0 +1,99 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        int userInput;
+        do {
+            System.out.println("Welcome to the Game Hub!\n" +
+                               "1. Play Quiz Game\n" +
+                               "2. Play Rock, Paper, Scissors\n" +
+                               "3. Exit");
+            System.out.print("Enter Your Choice : ");
+            userInput = input.nextInt();
+            input.nextLine();
+
+            // QUIZ GAME
+            if (userInput == 1) {
+                String[] questions = {
+                    "A. What is the smallest planet in our solar system?",
+                    "B. Who directed the movie Inception?",
+                    "C. What is the chemical symbol for gold?"
+                };
+                String[][] options = {
+                    {"a) Mars", "b) Mercury", "c) Venus", "d) Earth"},
+                    {"a) Steven Spielberg", "b) Christopher Nolan", "c) James Cameron", "d) Ridley Scott"},
+                    {"a) Au", "b) Ag", "c) Go", "d) Gd"}
+                };
+                String[] answers = {"b", "b", "a"};
+                String guess;
+                int score = 0;
+
+                for (int i = 0; i < questions.length; i++) {
+                    System.out.println(questions[i]);
+                    for (String option : options[i]) {
+                        System.out.println(option);
+                    }
+                    System.out.print("Enter Answer : ");
+                    guess = input.nextLine().trim().toLowerCase();
+
+                    if (guess.equals(answers[i])) {
+                        System.out.println("CORRECT ANSWER!!!");
+                        score++;
+                    } else {
+                        System.out.println("WRONG ANSWER!!!");
+                    }
+                    System.out.println("Your Current Score Is : " + score);
+                }
+                System.out.println("YOUR TOTAL SCORE IS : " + score);
+            }
+
+            // ROCK, PAPER, SCISSORS GAME
+            else if (userInput == 2) {
+                Random rps = new Random();
+                String[] choice = {"rock", "paper", "scissor"};
+                String userChoice;
+                String again;
+                int points = 0;
+
+                do {
+                    System.out.print("Enter Your Decision (Rock/Paper/Scissor): ");
+                    userChoice = input.nextLine().toLowerCase();
+                    String computerChoice = choice[rps.nextInt(3)]; // moved inside loop
+                    System.out.println("Computer chose: " + computerChoice);
+
+                    if (userChoice.equals(computerChoice)) {
+                        System.out.println("It's A TIE!!");
+                    } else if (
+                        (computerChoice.equals("rock") && userChoice.equals("paper")) ||
+                        (computerChoice.equals("paper") && userChoice.equals("scissor")) ||
+                        (computerChoice.equals("scissor") && userChoice.equals("rock"))
+                    ) {
+                        System.out.println("You Won!");
+                        points++;
+                    } else if (
+                        (computerChoice.equals("rock") && userChoice.equals("scissor")) ||
+                        (computerChoice.equals("paper") && userChoice.equals("rock")) ||
+                        (computerChoice.equals("scissor") && userChoice.equals("paper"))
+                    ) {
+                        System.out.println("You Lost!");
+                    } else {
+                        System.out.println("Invalid Input!!");
+                    }
+
+                    System.out.println("Your Current Score Is: " + points);
+                    System.out.print("Do You Wish To Continue (Yes/No): ");
+                    again = input.nextLine().toLowerCase();
+
+                } while (again.equals("yes"));
+
+                System.out.println("YOUR TOTAL SCORE IS: " + points);
+            }
+
+        } while (userInput != 3);
+
+        System.out.println("Thank You For Visiting GAMEHUB!");
+        input.close();
+    }
+}
